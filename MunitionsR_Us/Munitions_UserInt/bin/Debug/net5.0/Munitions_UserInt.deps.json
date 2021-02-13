@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v5.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v5.0": {
+      "Munitions_UserInt/1.0.0": {
+        "runtime": {
+          "Munitions_UserInt.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Munitions_UserInt/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
