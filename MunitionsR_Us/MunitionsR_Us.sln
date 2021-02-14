@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MunitionsR_Us", "MunitionsR
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MunitionsR_Us.Tests", "MunitionsR_Us.Tests\MunitionsR_Us.Tests.csproj", "{810659C9-D220-4938-BF58-AB6EEDCF14B8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Munitions_UserInt", "Munitions_UserInt\Munitions_UserInt.csproj", "{D9601BD4-8F57-43D7-95C0-CB1D494B588D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Munitions_UserInterface", "Munitions_UserInt\Munitions_UserInterface.csproj", "{D9601BD4-8F57-43D7-95C0-CB1D494B588D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
