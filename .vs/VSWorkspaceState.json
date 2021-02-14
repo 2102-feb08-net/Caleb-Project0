@@ -1,6 +1,12 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\MunitionsR_Us",
+    "\\MunitionsR_Us\\.vs",
+    "\\MunitionsR_Us\\.vs\\MunitionsR_Us",
+    "\\MunitionsR_Us\\MunitionsR_Us",
+    "\\MunitionsR_Us\\MunitionsR_Us.Tests",
+    "\\MunitionsR_Us\\Munitions_UserInterface"
   ],
   "PreviewInSolutionExplorer": false
 }

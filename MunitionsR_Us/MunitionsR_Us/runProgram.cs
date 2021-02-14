@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace Munitions_UserInt
+namespace MunitionsR_Us
 {
-    class Program
+    class runProgram
     {
         static void Main(string[] args)
         {

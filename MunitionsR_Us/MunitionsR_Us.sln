@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31005.135
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MunitionsR_Us", "MunitionsR_Us\MunitionsR_Us.csproj", "{749C3B2E-8A12-454D-886A-FC498ADCFFC0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MunitionsR_Us", "MunitionsR_Us\MunitionsR_Us.csproj", "{749C3B2E-8A12-454D-886A-FC498ADCFFC0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MunitionsR_Us.Tests", "MunitionsR_Us.Tests\MunitionsR_Us.Tests.csproj", "{810659C9-D220-4938-BF58-AB6EEDCF14B8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MunitionsR_Us.Tests", "MunitionsR_Us.Tests\MunitionsR_Us.Tests.csproj", "{810659C9-D220-4938-BF58-AB6EEDCF14B8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Munitions_UserInterface", "Munitions_UserInt\Munitions_UserInterface.csproj", "{D9601BD4-8F57-43D7-95C0-CB1D494B588D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MunitionsR_Us_UI", "MunitionsR_Us_UI\MunitionsR_Us_UI.csproj", "{437D7D82-3EBB-440B-8A6A-19FFEDD0931F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{810659C9-D220-4938-BF58-AB6EEDCF14B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{810659C9-D220-4938-BF58-AB6EEDCF14B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{810659C9-D220-4938-BF58-AB6EEDCF14B8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D9601BD4-8F57-43D7-95C0-CB1D494B588D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D9601BD4-8F57-43D7-95C0-CB1D494B588D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D9601BD4-8F57-43D7-95C0-CB1D494B588D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D9601BD4-8F57-43D7-95C0-CB1D494B588D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{437D7D82-3EBB-440B-8A6A-19FFEDD0931F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{437D7D82-3EBB-440B-8A6A-19FFEDD0931F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{437D7D82-3EBB-440B-8A6A-19FFEDD0931F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{437D7D82-3EBB-440B-8A6A-19FFEDD0931F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

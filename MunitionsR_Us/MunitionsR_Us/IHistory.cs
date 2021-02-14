@@ -5,5 +5,5 @@ interface IHistory
     // dictionary item and amount???
 
 
-    string alterHistory();
+    string AccessHistory();
 }
