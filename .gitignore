@@ -5,8 +5,8 @@
 
 #Caleb specificed files
 *.dll
-*cache
-*json
+*.cache
+*.json
 
 
 # User-specific files
