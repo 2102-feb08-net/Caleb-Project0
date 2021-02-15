@@ -7,6 +7,10 @@ namespace MunitionsR_Us
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
+            InitialGeneration genObj = new InitialGeneration();
+
+            genObj.GenerateNorthStock();
+
         }
     }
 }

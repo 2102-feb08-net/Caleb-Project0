@@ -2,7 +2,7 @@
 
 public class Product
 {
-    private string _productName;
+    private ItemNameEnum _productName;
     private decimal _itemCost;       // use 0.00m to avoid extra decimals
 	// item description?
 	// product history? perhaps last time purchased?
@@ -18,4 +18,17 @@ public class Product
 
 
 
+}
+
+internal enum ItemNameEnum
+{
+	Fighter_Jet,
+	Flak_Vest,
+	Missile,
+	Pistol,
+	Pistol_Ammunition,
+	Rifle,
+	Rifle_ammunition,
+	Tank,
+	Tank_Shell
 }
