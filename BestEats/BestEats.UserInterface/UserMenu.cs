@@ -27,7 +27,7 @@ namespace BestEats
             {
                 case 1:
                     Console.WriteLine("Please enter your full name.");
-                    registerUser();
+                    RegisterUser();
 
 
 
@@ -39,11 +39,22 @@ namespace BestEats
                     break;
             }
         }
-        public void registerUser()
+        public void RegisterUser()
         {
+            bool checkRegistering = false;
+            int fallBack = 5;
+            int count = 0;
             Customer newCustomer = new Customer();
-            newCustomer.CustomerFullName = Console.ReadLine();
+            
+            while ((checkRegistering == false) && (count <= fallBack))
+            {
+                newCustomer.CustomerFullName = Console.ReadLine();
+                count++;
+                checkRegistering = newCustomer.ValidateName(newCustomer); 
+                Console.WriteLine(checkRegistering);
+                Console.WriteLine(count);
 
+            }
         }
 
         public void signInUser()
