@@ -1,4 +1,5 @@
 ﻿using System;
+using BestEats;
 
 namespace BestEats
 {
@@ -10,7 +11,7 @@ namespace BestEats
         {
             return Console.ReadLine();
         }
-        public static void StartMenu()
+        public void StartMenu()
         {
             Console.WriteLine("Welcome to Best Eats! The tastiest eats you ever ate!");
             Console.WriteLine("If you are a new customer, Please register by pressing,      1");
@@ -26,6 +27,10 @@ namespace BestEats
             {
                 case 1:
                     Console.WriteLine("Please enter your full name.");
+                    registerUser();
+
+
+
                     break;
 
 
@@ -34,9 +39,10 @@ namespace BestEats
                     break;
             }
         }
-
         public void registerUser()
         {
+            Customer newCustomer = new Customer();
+            newCustomer.CustomerFullName = Console.ReadLine();
 
         }
 
