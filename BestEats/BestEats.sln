@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31005.135
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BestEats", "MunitionsR_Us\BestEats.csproj", "{749C3B2E-8A12-454D-886A-FC498ADCFFC0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BestEats", "BestEats\BestEats.csproj", "{749C3B2E-8A12-454D-886A-FC498ADCFFC0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BestEats.Tests", "MunitionsR_Us.Tests\BestEats.Tests.csproj", "{810659C9-D220-4938-BF58-AB6EEDCF14B8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BestEats.Tests", "BestEats.Tests\BestEats.Tests.csproj", "{810659C9-D220-4938-BF58-AB6EEDCF14B8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BestEats.UserInterface", "MunitionsR_Us_UI\BestEats.UserInterface.csproj", "{437D7D82-3EBB-440B-8A6A-19FFEDD0931F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BestEats.UserInterface", "BestEats.UserInterface\BestEats.UserInterface.csproj", "{437D7D82-3EBB-440B-8A6A-19FFEDD0931F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
