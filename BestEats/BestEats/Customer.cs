@@ -26,8 +26,8 @@ namespace BestEats
 
         public string CustomerPassword
         {
-    get { return _customerPassword; }
-    set { }
+            get { return _customerPassword; }
+            set { _customerPassword = value; }
 
         }
         public string AccessHistory()

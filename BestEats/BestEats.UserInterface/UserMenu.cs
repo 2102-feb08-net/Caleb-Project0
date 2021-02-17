@@ -26,13 +26,15 @@ namespace BestEats
             switch(Int32.Parse(menuInput))
             {
                 case 1:
-                    Console.WriteLine("Please enter your full name.");
+                    
                     RegisterUser();
-
-
-
                     break;
-
+                case 2:
+                    SignInUser();
+                    break;
+                case 9:
+                    System.Environment.Exit(1);
+                    break;
 
                 default:
                     Console.WriteLine("There was an error with the menu. Shutting off.");
@@ -45,21 +47,27 @@ namespace BestEats
             int fallBack = 5;
             int count = 0;
             Customer newCustomer = new Customer();
-            
+
+            Console.WriteLine("Please enter your full name.");
             while ((checkRegistering == false) && (count <= fallBack))
             {
                 newCustomer.CustomerFullName = Console.ReadLine();
+                checkRegistering = newCustomer.ValidateName(newCustomer);
                 count++;
-                checkRegistering = newCustomer.ValidateName(newCustomer); 
-                Console.WriteLine(checkRegistering);
-                Console.WriteLine(count);
-
+            }
+            Console.WriteLine("Please enter a password at least 8 characters long");
+            count = 0;
+            checkRegistering = false;
+            while(( checkRegistering == false) && (count <= fallBack))
+            {
+                newCustomer.CustomerPassword = Console.ReadLine();
+                checkRegistering = newCustomer.ValidatePass(newCustomer);
+                count++;
             }
         }
-
-        public void signInUser()
+        public void SignInUser()
         {
-
+            // check file for user name and password
         }
 
             
