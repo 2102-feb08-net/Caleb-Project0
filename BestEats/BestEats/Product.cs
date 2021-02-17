@@ -25,14 +25,8 @@ namespace BestEats
 
     public enum ItemNameEnum
     {
-        Fighter_Jet,
-        Flak_Vest,
-        Missile,
-        Pistol,
-        Pistol_Ammunition,
-        Rifle,
-        Rifle_ammunition,
-        Tank,
-        Tank_Shell
+        Apple,
+        Orange,
+        Banana
     }
 }

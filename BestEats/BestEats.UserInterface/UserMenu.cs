@@ -18,12 +18,15 @@ namespace BestEats
             Console.WriteLine("If you are an existing customer, Please sign in by entering, 2");
             Console.WriteLine("If you wish to exit at any time, please enter,               9");
         }
-
-        public void configInput()
+        public void StoreMenu()
+        {
+            Console.WriteLine("Please choose the store location you wish to order from:");
+        }
+        public void StartMenuInput()
         {
             string menuInput = Console.ReadLine();
             
-            switch(Int32.Parse(menuInput))
+            switch(int.Parse(menuInput))
             {
                 case 1:
                     
@@ -41,11 +44,49 @@ namespace BestEats
                     break;
             }
         }
+        public void StoreMenuInput()
+        {
+            bool checkRegistering = false;
+            int fallBack = 5;
+            int count = 0;
+
+            // object likely passed in run function rather than made here
+            Store newStore = new Store();
+
+            Console.WriteLine("insert the number by your choice;   1: Northerville  --  2:Westerville  --  3: Southerville  --  4: Easterville ");
+            string menuInput = Console.ReadLine();
+
+            while ((checkRegistering == false) && (count <= fallBack))
+            {
+                // number, not enum
+                //newStore.StoreName = (StoreNameChoice) Enum.Parse(typeof(StoreNameChoice), newStore.StoreName, true);
+                checkRegistering = newStore.ValidateName(newStore);
+                count++;
+            }
+
+            switch (int.Parse(menuInput))
+            {
+                case 1:
+                    if(newStore.StoreName.Equals(StoreNameChoice.Northerville))
+                    {
+                        Console.WriteLine("selected Northerville");
+                    }
+                    break;
+
+                default:
+                    Console.WriteLine("Error with input, shutting off");
+                    break;
+            }
+
+
+        }
         public void RegisterUser()
         {
             bool checkRegistering = false;
             int fallBack = 5;
             int count = 0;
+            
+            // object likely passed in run function rather than made here
             Customer newCustomer = new Customer();
 
             Console.WriteLine("Please enter your full name.");

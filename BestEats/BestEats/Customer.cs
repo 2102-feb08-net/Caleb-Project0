@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BestEats
 {
-    public class Customer : IHistory
+    public class Customer : IHistory, IValidator<Customer>
     {
         private string _customerFullName;
         private string _customerPassword;
@@ -37,8 +37,6 @@ namespace BestEats
         }
 
 
-        // public class ValidateCustomer : IValidator<Customer>
-        //{
         public bool ValidateName(Customer t)
         {
             if (String.IsNullOrEmpty(t.CustomerFullName))

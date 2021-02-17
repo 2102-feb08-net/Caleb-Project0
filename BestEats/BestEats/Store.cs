@@ -4,22 +4,47 @@ using System.Collections.Specialized;
 
 namespace BestEats
 {
-	public class Store
+	public class Store : IValidator<Store>
 	{
-		struct StoreProduct
+
+		private StoreNameChoice _storeName;
+        struct StoreProduct
 		{
 			public Product item;
 			public int stock;
 		};
 
-		// list of products ---stock
-		// store specific order history
+		public StoreNameChoice StoreName { get; set; }
+
+        public bool ValidateName(Store t)
+        {
+            if(Enum.IsDefined(typeof(StoreNameChoice), t.StoreName))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public bool ValidatePass(Store t)
+        {
+            throw new NotImplementedException();
+        }
 
 
-		public Store()
-		{
-		}
+        // list of products ---stock
+        // store specific order history
 
 
-	}
+    }
+
+	public enum StoreNameChoice
+    {
+		Northerville,
+		Westerville,
+		Southerville,
+		Easterville
+    }
 }

@@ -11,8 +11,12 @@ namespace BestEats
 
             UserMenu newMenu = new UserMenu();
 
+
+            // pass object through parameters instead
             newMenu.StartMenu();
-            newMenu.configInput();
+            newMenu.StartMenuInput();
+            newMenu.StoreMenu();
+            newMenu.StoreMenuInput();
             
 
 
