@@ -36,7 +36,11 @@ namespace BestEats
             return _customerHistory;
         }
 
-
+        /// <summary>
+        /// checks Customer name for null, digit, length of 50 or bigger
+        /// </summary>
+        /// <param name="t"> takes in Customer Object t</param>
+        /// <returns></returns>
         public bool ValidateName(Customer t)
         {
             if (String.IsNullOrEmpty(t.CustomerFullName))
@@ -59,6 +63,12 @@ namespace BestEats
                 return true;
             }
         }
+
+        /// <summary>
+        /// checks Customer password for Null and length of 8 - 80
+        /// </summary>
+        /// <param name="t"> takes in Customer Object, t </param>
+        /// <returns></returns>
         public bool ValidatePass(Customer t)
         {
             if (String.IsNullOrEmpty(t.CustomerPassword))

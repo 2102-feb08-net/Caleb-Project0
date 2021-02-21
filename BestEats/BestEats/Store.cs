@@ -1,24 +1,25 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Specialized;
+using System.Collections.Generic;
 
 namespace BestEats
 {
 	public class Store : IValidator<Store>
 	{
 
-		private StoreNameChoice _storeName;
-        struct StoreProduct
-		{
-			public Product item;
-			public int stock;
-		};
+		private StoreNameChoice _storeLocation;
+        
 
-		public StoreNameChoice StoreName { get; set; }
+
+        public List<Order> StoreOrder { get; set; }
+
+
+		public StoreNameChoice StoreLocation { get; set; }
 
         public bool ValidateName(Store t)
         {
-            if(Enum.IsDefined(typeof(StoreNameChoice), t.StoreName))
+            if(Enum.IsDefined(typeof(StoreNameChoice), t.StoreLocation))
             {
                 return true;
             }

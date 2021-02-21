@@ -9,7 +9,7 @@ namespace BestEats
 
             Console.WriteLine("Hello World!");
 
-            Product testItem1 = new Product(100, ItemNameEnum.Rifle);
+            Product testItem1 = new Product(100, ItemNameEnum.Apple);
 
             Console.WriteLine(testItem1.ItemCost);
 

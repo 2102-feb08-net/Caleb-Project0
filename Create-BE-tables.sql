@@ -1,0 +1,56 @@
+/*
+
+DROP TABLE BE.Customer;
+DROP TABLE BE.Store;
+DROP TABLE BE.Orders;
+DROP TABLE BE.Product;
+
+DROP SCHEMA BE;
+
+*/
+
+
+CREATE SCHEMA BE;
+GO
+
+
+CREATE TABLE BE.Customer 
+(
+	
+	custID INT NOT NULL PRIMARY KEY,
+	fullName NVARCHAR(150) NOT NULL DEFAULT 'insertname'
+	--CONSTRAINT PK_Cust_ID PRIMARY KEY (CustID)
+);
+
+CREATE TABLE BE.Store 
+(
+	storeID INT NOT NULL PRIMARY KEY,
+	storeLocation NVARCHAR(100) NOT NULL DEFAULT 'Store Location',
+	-- product
+);
+
+CREATE TABLE BE.Orders
+(
+	orderID INT NOT NULL PRIMARY KEY,
+	customerID INT NOT NULL,
+	storeId INT NOT NULL,
+	productId INT NOT NULL,
+	productQuantity INT NOT NULL,
+	orderPurchaseDate DATETIMEOFFSET NOT NULL DEFAULT SYSDATETIMEOFFSET(),
+	FOREIGN KEY (customerID) REFERENCES BE.Customer(custID),
+	FOREIGN KEY (storeId) REFERENCES BE.Store(storeID),
+	FOREIGN KEY (productId) REFERENCES BE.Product(productID)
+);
+
+CREATE TABLE BE.Product
+(
+	productID INT NOT NULL PRIMARY KEY,
+	productName NVARCHAR(100) NOT NULL DEFAULT 'Default Product',
+	price DECIMAL NOT NULL DEFAULT 0.00,
+
+);
+
+
+
+
+

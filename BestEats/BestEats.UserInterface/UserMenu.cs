@@ -58,7 +58,8 @@ namespace BestEats
 
             while ((checkRegistering == false) && (count <= fallBack))
             {
-                // number, not enum
+                // this should test a number of choice not an enum. dummy :(
+
                 //newStore.StoreName = (StoreNameChoice) Enum.Parse(typeof(StoreNameChoice), newStore.StoreName, true);
                 checkRegistering = newStore.ValidateName(newStore);
                 count++;
@@ -67,7 +68,7 @@ namespace BestEats
             switch (int.Parse(menuInput))
             {
                 case 1:
-                    if(newStore.StoreName.Equals(StoreNameChoice.Northerville))
+                    if(newStore.StoreLocation.Equals(StoreNameChoice.Northerville))
                     {
                         Console.WriteLine("selected Northerville");
                     }
@@ -109,6 +110,15 @@ namespace BestEats
         public void SignInUser()
         {
             // check file for user name and password
+        }
+
+        public void OrderingMenu()
+        {
+            Console.WriteLine("Please select an action for your account: ");
+            Console.WriteLine("To check your order history, please press,    3");
+            Console.WriteLine("To make a new order, please press,    4");
+            Console.WriteLine("To delete one of your orders please press,    5");
+            Console.WriteLine("To exit,                     please press,    9");
         }
 
             
