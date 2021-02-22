@@ -68,10 +68,7 @@ namespace BestEats
             switch (int.Parse(menuInput))
             {
                 case 1:
-                    if(newStore.StoreLocation.Equals(StoreNameChoice.Northerville))
-                    {
-                        Console.WriteLine("selected Northerville");
-                    }
+                    if(newStore.StoreLocation.Equals(StoreNameChoice.Northerville)) { Console.WriteLine("selected Northerville"); }
                     break;
 
                 default:
