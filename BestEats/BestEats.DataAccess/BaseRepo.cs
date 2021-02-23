@@ -39,6 +39,7 @@ namespace BestEats.DataAccess
                 
             };
         }
+        /*
         public IQueryable<Customer> GetCustomerByName(string customerName)
         {
             
@@ -46,6 +47,7 @@ namespace BestEats.DataAccess
 
             return results;
         }
+        */
         public bool checkCustomerPasswordExists(string userName, string passwordInput)
         {
             bool exists = false;
@@ -71,12 +73,7 @@ namespace BestEats.DataAccess
                 exists = true;
             }
             return exists;
-            
-            
         }
-
-
-
         public void RegisterCustomer(BestEats.Customer DBcustomer)
         {
             Customer customer = new Customer
@@ -99,8 +96,8 @@ namespace BestEats.DataAccess
             throw new NotImplementedException();
         }
 
-        // STORE REPO SECTION ******
 
+        // STORE REPO SECTION ******
         public Store GetStoreByID(int storeID)
         {
             Store store = _context.Stores.Find(storeID);
