@@ -1,16 +1,12 @@
 ﻿using System;
 using BestEats;
+using BestEats.DataAccess;
 
-namespace BestEats
+namespace BestEats.UserInterface
 {
-    class UserMenu : IUserInput
+    class UserMenu
     {
 
-        
-        string IUserInput.GetInput()
-        {
-            return Console.ReadLine();
-        }
         public void StartMenu()
         {
             Console.WriteLine("Welcome to Best Eats! The tastiest eats you ever ate!");
@@ -22,7 +18,7 @@ namespace BestEats
         {
             Console.WriteLine("Please choose the store location you wish to order from:");
         }
-        public void StartMenuInput()
+        public void StartMenuInput(BaseRepo baseRepo)
         {
             string menuInput = Console.ReadLine();
             
@@ -30,21 +26,24 @@ namespace BestEats
             {
                 case 1:
                     
-                    RegisterUser();
+                    RegisterUser(baseRepo);
                     break;
                 case 2:
-                    SignInUser();
+                    SignInUser(baseRepo);
                     break;
                 case 9:
+                    Console.WriteLine("Shutting Down");
                     System.Environment.Exit(1);
                     break;
 
                 default:
-                    Console.WriteLine("There was an error with the menu. Shutting off.");
+                    Console.WriteLine("Not a valid choice.");
+                    Console.WriteLine("Select 1 for Register---2 for logging in---or 9 to escape");
+                    StartMenuInput(baseRepo);
                     break;
             }
         }
-        public void StoreMenuInput()
+        public void StoreMenuInput(BaseRepo baseRepo)
         {
             bool checkRegistering = false;
             int fallBack = 5;
@@ -78,7 +77,7 @@ namespace BestEats
 
 
         }
-        public void RegisterUser()
+        public void RegisterUser(BaseRepo baseRepo)
         {
             bool checkRegistering = false;
             int fallBack = 5;
@@ -86,11 +85,10 @@ namespace BestEats
             
             // object likely passed in run function rather than made here
             Customer newCustomer = new Customer();
-
             Console.WriteLine("Please enter your full name.");
             while ((checkRegistering == false) && (count <= fallBack))
             {
-                newCustomer.CustomerFullName = Console.ReadLine();
+                newCustomer.FullName = Console.ReadLine();
                 checkRegistering = newCustomer.ValidateName(newCustomer);
                 count++;
             }
@@ -99,12 +97,14 @@ namespace BestEats
             checkRegistering = false;
             while(( checkRegistering == false) && (count <= fallBack))
             {
-                newCustomer.CustomerPassword = Console.ReadLine();
+                newCustomer.CustPassword = Console.ReadLine();
                 checkRegistering = newCustomer.ValidatePass(newCustomer);
                 count++;
             }
+            baseRepo.RegisterCustomer(newCustomer);
+
         }
-        public void SignInUser()
+        public void SignInUser(BaseRepo baseRepo)
         {
             // check file for user name and password
         }

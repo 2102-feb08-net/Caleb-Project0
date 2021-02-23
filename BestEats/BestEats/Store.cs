@@ -8,14 +8,10 @@ namespace BestEats
 	public class Store : IValidator<Store>
 	{
 
-		private StoreNameChoice _storeLocation;
-        
 
-
-        public List<Order> StoreOrder { get; set; }
-
-
-		public StoreNameChoice StoreLocation { get; set; }
+        public int StoreId { get; set; }
+        public virtual ICollection<Order> Orders { get; set; }
+        public StoreNameChoice StoreLocation { get; set; }
 
         public bool ValidateName(Store t)
         {

@@ -1,6 +1,8 @@
 
 /*
 
+
+
 DROP TABLE BE.Customer;
 DROP TABLE BE.Store;
 DROP TABLE BE.Orders;

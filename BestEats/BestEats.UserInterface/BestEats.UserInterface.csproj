@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\BestEats.DataAccess\BestEats.DataAccess.csproj" />
     <ProjectReference Include="..\BestEats\BestEats.csproj" />
   </ItemGroup>
 

@@ -11,13 +11,13 @@ namespace BestEats.DataAccess
 {
     public interface ICustomerRepo
     {
-        IEnumerable<Customer> GetCustomers(string name = null);
+        IEnumerable<Customer> GetCustomer(string name = null);
 
-        Customer GetCustomerID(int CustomerID);
+        BestEats.Customer GetCustomerByID(int customerID);
 
         void RegisterCustomer(BestEats.Customer customer);
 
-        void UnregisterCustomer(int CustomerID);
+        void UnregisterCustomer(int customerID);
 
         void UpdateCustomer(Customer customer);
 

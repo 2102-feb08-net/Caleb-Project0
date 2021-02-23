@@ -1,24 +1,28 @@
 ﻿using System;
+using BestEats.DataAccess;
 
-namespace BestEats
+namespace BestEats.UserInterface
 {
     class runUI
     {
         static void Main(string[] args)
         {
-
-            Console.WriteLine("keep the debugger from yelling at me for not having a main in UI!");
-
+            // logger?
             UserMenu newMenu = new UserMenu();
+
+            using var depend = new ContextDepend();
+
+            BaseRepo baseRepo = depend.CreateBaseRepo();
 
 
             // pass object through parameters instead
             newMenu.StartMenu();
-            newMenu.StartMenuInput();
-            newMenu.StoreMenu();
-            newMenu.StoreMenuInput();
+            newMenu.StartMenuInput(baseRepo);
             
+            newMenu.StoreMenu();
+            newMenu.StoreMenuInput(baseRepo);
 
+           
 
         }
     }

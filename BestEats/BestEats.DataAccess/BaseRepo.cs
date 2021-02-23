@@ -20,24 +20,30 @@ namespace BestEats.DataAccess
        
 
 
-        ///<remark> Customer Related Repos </remark>
-        public IEnumerable<Customer> GetCustomers(string name = null)
+        // CUSTOMER REPO SECTION *********
+
+        public IEnumerable<Customer> GetCustomer(string name = null)
         {
             throw new NotImplementedException();
         }
 
         
-        public Customer GetCustomerID(int CustomerID)
+        public BestEats.Customer GetCustomerByID(int customerID)
         {
-            throw new NotImplementedException();
+            Customer customer = _context.Customers.Find(customerID);
+            return new BestEats.Customer
+            {
+                CustId = customer.CustId,
+                FullName = customer.FullName
+            };
         }
 
         public void RegisterCustomer(BestEats.Customer DBcustomer)
         {
             Customer customer = new Customer
             {
-                FullName = DBcustomer.CustomerFullName,
-                CustPassword = DBcustomer.CustomerPassword
+                FullName = DBcustomer.FullName,
+                CustPassword = DBcustomer.CustPassword
             };
 
             _context.Add(customer);
@@ -54,10 +60,65 @@ namespace BestEats.DataAccess
             throw new NotImplementedException();
         }
 
+        // STORE REPO SECTION ******
 
-        /// <summary>
-        /// 
-        /// </summary>
+        public Store GetStoreByID(int storeID)
+        {
+            Store store = _context.Stores.Find(storeID);
+            return new Store
+            {
+                StoreId = store.StoreId,
+                StoreLocation = store.StoreLocation
+            };
+        }
+
+        // PRODUCT REPO SECTION *********
+
+        public Product GetProductByID(int productID)
+        {
+            Product product = _context.Products.Find(productID);
+            return new Product
+            {
+                ProductId = product.ProductId,
+                ProductName = product.ProductName,
+                Price = product.Price,
+                Orders = product.Orders
+            };
+        }
+
+        // ORDER REPO SECTION **********
+
+        public Order GetOrderByID(int orderID)
+        {
+            Order order = _context.Orders.Find(orderID);
+            return new Order
+            {
+                OrderId = order.OrderId,
+                ItemName = order.ItemName,
+                ProductQuantity = order.ProductQuantity,
+                ProductId = order.ProductId,
+                CustomerId = order.CustomerId,
+                StoreId = order.StoreId
+            };
+        }
+
+        public void AddOrder(BestEats.Order DBorder)
+        {
+            Order order = new Order
+            {
+                OrderId = DBorder.OrderId,
+                CustomerId = DBorder.CustomerId,
+                StoreId = DBorder.StoreId,
+                ProductId = DBorder.ProductId,
+                ItemName = DBorder.ItemName,
+                ProductQuantity = DBorder.ProductQuantity,
+                OrderPurchaseDate = DBorder.OrderPurchaseDate
+                
+                //CustPassword = DBcustomer.CustomerPassword
+            };
+
+            _context.Add(order);
+        }
 
 
 

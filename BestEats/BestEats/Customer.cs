@@ -18,18 +18,11 @@ namespace BestEats
         {
         }
 
+        public int CustId { get; set; }
+        public string FullName { get; set; }
+        public string CustPassword { get; set; }
 
-        public string CustomerFullName { get; set; }
-
-
-
-
-        public string CustomerPassword
-        {
-            get { return _customerPassword; }
-            set { _customerPassword = value; }
-
-        }
+        public virtual ICollection<Order> Orders { get; set; }
         public string AccessHistory()
         {
             _customerHistory = "5";  // placeholder CHANGE
@@ -43,17 +36,17 @@ namespace BestEats
         /// <returns></returns>
         public bool ValidateName(Customer t)
         {
-            if (String.IsNullOrEmpty(t.CustomerFullName))
+            if (String.IsNullOrEmpty(t.FullName))
             {
                 Console.WriteLine("Please insert a Customer Name");
                 return false;
             }
-            if (t.CustomerFullName.Any(char.IsDigit))
+            if (t.FullName.Any(char.IsDigit))
             {
                 Console.WriteLine("Please do not use numbers in the customer name");
                 return false;
             }
-            if (t.CustomerFullName.Length >= 50)
+            if (t.FullName.Length >= 50)
             {
                 Console.WriteLine("Please use a shorter name");
                 return false;
@@ -71,12 +64,12 @@ namespace BestEats
         /// <returns></returns>
         public bool ValidatePass(Customer t)
         {
-            if (String.IsNullOrEmpty(t.CustomerPassword))
+            if (String.IsNullOrEmpty(t.CustPassword))
             {
                 Console.WriteLine("please insert a password");
                 return false;
             }
-            if (t.CustomerPassword.Length < 8 || t.CustomerPassword.Length > 80)
+            if (t.CustPassword.Length < 8 || t.CustPassword.Length > 80)
             {
                 Console.WriteLine("your password should be at least 8 characters and less than 80");
                 return false;
