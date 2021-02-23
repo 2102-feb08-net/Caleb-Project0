@@ -1,12 +1,10 @@
 
 /*
 
-
-
-DROP TABLE BE.Customer;
-DROP TABLE BE.Store;
 DROP TABLE BE.Orders;
 DROP TABLE BE.Product;
+DROP TABLE BE.Customer;
+DROP TABLE BE.Store;
 
 DROP SCHEMA BE;
 
@@ -19,8 +17,8 @@ GO
 
 CREATE TABLE BE.Customer 
 (
-	custID INT NOT NULL PRIMARY KEY,
-	fullName NVARCHAR(150) NOT NULL DEFAULT 'insertname',
+	custID INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
+	fullName NVARCHAR(150) NOT NULL UNIQUE DEFAULT 'insertname',
 	custPassword NVARCHAR(150) NOT NULL DEFAULT 'livelaughlove',
 	--CONSTRAINT PK_Cust_ID PRIMARY KEY (CustID)
 );
@@ -41,7 +39,7 @@ CREATE TABLE BE.Product
 
 CREATE TABLE BE.Orders
 (
-	orderID INT NOT NULL PRIMARY KEY,
+	orderID INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
 	customerId INT NOT NULL,
 	storeId INT NOT NULL,
 	productId INT NOT NULL,
@@ -53,29 +51,33 @@ CREATE TABLE BE.Orders
 	FOREIGN KEY (productId) REFERENCES BE.Product(productID) ON DELETE CASCADE,
 );
 
+/*
 
 INSERT INTO BE.Customer(custID, fullName, custPassword) VALUES
 	(0, 'Jebediah Georgeson', 'lemonfresh'),
 	(1, 'Sara Georgedaughter', 'hatemylastname')
 
+*/
 
 INSERT INTO BE.Store(storeID, storeLocation) VALUES
-	(0, 'Northerville'),
-	(1, 'Westerville'),
-	(2, 'Southerville'),
-	(3, 'Easterville')
+	(1, 'Northerville'),
+	(2, 'Westerville'),
+	(3, 'Southerville'),
+	(4, 'Easterville')
+
 
 INSERT INTO BE.Product(productID, productName, price) VALUES
-	(0, 'Apple', 1.00),
-	(1, 'Orange', 1.50)
+	(1, 'Apple', 1.00),
+	(2, 'Orange', 1.50)
 
-
+/*
 -- skipping productname
 INSERT INTO BE.Orders(orderID, customerId, storeId, productId, itemName, productQuantity, orderPurchaseDate) VALUES
 	(0, 0, 1, 0, 'Apple', 3, SYSDATETIMEOFFSET() ),
 	(1, 1, 3, 1, 'Orange', 2, SYSDATETIMEOFFSET() )
 
 
+*/
 
 /*
 

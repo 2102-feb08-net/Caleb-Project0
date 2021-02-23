@@ -9,7 +9,7 @@ using BestEats;
 
 namespace BestEats.DataAccess
 {
-    public class BaseRepo : ICustomerRepo
+    public class BaseRepo //: ICustomerRepo
     {
         private readonly DB_BestEatsContext _context;
         
@@ -34,9 +34,48 @@ namespace BestEats.DataAccess
             return new BestEats.Customer
             {
                 CustId = customer.CustId,
-                FullName = customer.FullName
+                FullName = customer.FullName,
+                CustPassword = customer.CustPassword
+                
             };
         }
+        public IQueryable<Customer> GetCustomerByName(string customerName)
+        {
+            
+            var results = _context.Customers.Where(n => n.FullName.Contains(customerName));
+
+            return results;
+        }
+        public bool checkCustomerPasswordExists(string userName, string passwordInput)
+        {
+            bool exists = false;
+            var inputCust = _context.Customers
+                .Where(u => u.FullName == userName && u.CustPassword == passwordInput).ToList();
+
+
+            foreach (var c in inputCust)
+            {
+                exists = true;
+            }
+            return exists;
+        }
+
+        public bool checkCustomerNameExists(string loginInput)
+        {
+            bool exists = false;
+            var inputCust = _context.Customers
+                .Where(c => string.Equals(c.FullName, loginInput)).ToList();
+
+            foreach(var c in inputCust)
+            {
+                exists = true;
+            }
+            return exists;
+            
+            
+        }
+
+
 
         public void RegisterCustomer(BestEats.Customer DBcustomer)
         {
@@ -125,7 +164,7 @@ namespace BestEats.DataAccess
 
         public void Save()
         {
-            throw new NotImplementedException();
+            _context.SaveChanges();
         }
     }
 }

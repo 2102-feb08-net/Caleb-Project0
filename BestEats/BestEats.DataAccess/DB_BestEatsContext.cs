@@ -29,13 +29,11 @@ namespace BestEats.DataAccess
             modelBuilder.Entity<Customer>(entity =>
             {
                 entity.HasKey(e => e.CustId)
-                    .HasName("PK__Customer__9725F2E6D323393D");
+                    .HasName("PK__Customer__9725F2E6805A28CD");
 
                 entity.ToTable("Customer", "BE");
 
-                entity.Property(e => e.CustId)
-                    .ValueGeneratedNever()
-                    .HasColumnName("custID");
+                entity.Property(e => e.CustId).HasColumnName("custID");
 
                 entity.Property(e => e.CustPassword)
                     .IsRequired()
@@ -54,9 +52,7 @@ namespace BestEats.DataAccess
             {
                 entity.ToTable("Orders", "BE");
 
-                entity.Property(e => e.OrderId)
-                    .ValueGeneratedNever()
-                    .HasColumnName("orderID");
+                entity.Property(e => e.OrderId).HasColumnName("orderID");
 
                 entity.Property(e => e.CustomerId).HasColumnName("customerId");
 
@@ -79,26 +75,24 @@ namespace BestEats.DataAccess
                 entity.HasOne(d => d.Customer)
                     .WithMany(p => p.Orders)
                     .HasForeignKey(d => d.CustomerId)
-                    .HasConstraintName("FK__Orders__customer__607251E5");
+                    .HasConstraintName("FK__Orders__customer__1A9EF37A");
 
                 entity.HasOne(d => d.Product)
                     .WithMany(p => p.Orders)
                     .HasForeignKey(d => d.ProductId)
-                    .HasConstraintName("FK__Orders__productI__625A9A57");
+                    .HasConstraintName("FK__Orders__productI__1C873BEC");
 
                 entity.HasOne(d => d.Store)
                     .WithMany(p => p.Orders)
                     .HasForeignKey(d => d.StoreId)
-                    .HasConstraintName("FK__Orders__storeId__6166761E");
+                    .HasConstraintName("FK__Orders__storeId__1B9317B3");
             });
 
             modelBuilder.Entity<Product>(entity =>
             {
                 entity.ToTable("Product", "BE");
 
-                entity.Property(e => e.ProductId)
-                    .ValueGeneratedNever()
-                    .HasColumnName("productID");
+                entity.Property(e => e.ProductId).HasColumnName("productID");
 
                 entity.Property(e => e.Price)
                     .HasColumnType("money")
@@ -116,9 +110,7 @@ namespace BestEats.DataAccess
             {
                 entity.ToTable("Store", "BE");
 
-                entity.Property(e => e.StoreId)
-                    .ValueGeneratedNever()
-                    .HasColumnName("storeID");
+                entity.Property(e => e.StoreId).HasColumnName("storeID");
 
                 entity.Property(e => e.StoreLocation)
                     .IsRequired()

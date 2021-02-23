@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using BestEats;
 using BestEats.DataAccess;
+
 
 namespace BestEats.UserInterface
 {
@@ -27,9 +30,11 @@ namespace BestEats.UserInterface
                 case 1:
                     
                     RegisterUser(baseRepo);
-                    break;
+                    Console.WriteLine("Registration successful");
+                    goto case 2;
                 case 2:
                     SignInUser(baseRepo);
+                    Console.WriteLine("Signed in.");
                     break;
                 case 9:
                     Console.WriteLine("Shutting Down");
@@ -74,9 +79,8 @@ namespace BestEats.UserInterface
                     Console.WriteLine("Error with input, shutting off");
                     break;
             }
-
-
         }
+
         public void RegisterUser(BaseRepo baseRepo)
         {
             bool checkRegistering = false;
@@ -102,11 +106,67 @@ namespace BestEats.UserInterface
                 count++;
             }
             baseRepo.RegisterCustomer(newCustomer);
+            baseRepo.Save();
 
         }
         public void SignInUser(BaseRepo baseRepo)
         {
-            // check file for user name and password
+            int escape = 0;
+            Console.WriteLine("Please enter your full name");
+            string customerName = Console.ReadLine();
+            
+            while(baseRepo.checkCustomerNameExists(customerName) == false)
+            {
+                Console.WriteLine("name not found, please enter a valid name or escape with 9");
+                customerName = Console.ReadLine();
+                if(escape == 9)
+                {
+                    System.Environment.Exit(1);
+                }
+            }
+
+            Console.WriteLine("Please enter your password");
+            string customerPassword = Console.ReadLine();
+
+            while (baseRepo.checkCustomerPasswordExists(customerName, customerPassword) == false)
+            {
+                Console.WriteLine("invalid password, please enter a valid name or escape with 9");
+                customerPassword = Console.ReadLine();
+                if (escape == 9)
+                {
+                    System.Environment.Exit(1);
+                }
+            }
+
+
+            //IQueryable<BestEats.DataAccess.Customer> currentUser = baseRepo.GetCustomerByName(customerName);
+
+            /*
+
+            while (currentUser.Equals(false))
+            {
+                Console.WriteLine("name not found, re-enter a registered name, or press 9 to exit");
+                customerName = Console.ReadLine();
+                currentUser = baseRepo.GetCustomerByName(customerName);
+
+            }
+
+            Console.WriteLine("Please enter your password");
+            string customerPassword = Console.ReadLine();
+            currentUser = baseRepo.GetCustomerByPassword(customerPassword);
+
+            while (currentUser == null)
+            {
+
+                Console.WriteLine("name not found, re-enter a registered name, or press 9 to exit");
+                customerPassword = Console.ReadLine();
+                currentUser = baseRepo.GetCustomerByPassword(customerPassword);
+
+            }
+            return customerName;
+
+            */
+
         }
 
         public void OrderingMenu()

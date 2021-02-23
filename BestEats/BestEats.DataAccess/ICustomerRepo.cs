@@ -15,6 +15,7 @@ namespace BestEats.DataAccess
 
         BestEats.Customer GetCustomerByID(int customerID);
 
+        BestEats.Customer GetCustomerByName(string customerName);
         void RegisterCustomer(BestEats.Customer customer);
 
         void UnregisterCustomer(int customerID);

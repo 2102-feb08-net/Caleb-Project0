@@ -16,6 +16,8 @@ namespace BestEats
 
         public Customer()
         {
+            Orders = new HashSet<Order>();
+
         }
 
         public int CustId { get; set; }
