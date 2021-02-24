@@ -9,18 +9,20 @@ namespace BestEats.UserInterface
         {
             // logger?
             UserMenu newMenu = new UserMenu();
-
             using var depend = new ContextDepend();
-
             BaseRepo baseRepo = depend.CreateBaseRepo();
+
+            int storeSelection = 0;
+            string username;
 
 
             // pass object through parameters instead
             newMenu.StartMenu();
-            newMenu.StartMenuInput(baseRepo);
+            username = newMenu.StartMenuInput(baseRepo);
             
             newMenu.StoreMenu();
-            newMenu.StoreMenuInput(baseRepo);
+            storeSelection = newMenu.StoreMenuInput(baseRepo);
+            newMenu.OrderingMenu(storeSelection);
 
            
 

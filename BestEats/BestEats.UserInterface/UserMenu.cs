@@ -22,7 +22,7 @@ namespace BestEats.UserInterface
             Console.WriteLine("Please choose the store location you wish to order from:");
         }
 
-        public void StartMenuInput(BaseRepo baseRepo)
+        public string StartMenuInput(BaseRepo baseRepo)
         {
             string menuInput = Console.ReadLine();
             while(menuInput.Any(char.IsLetter))
@@ -41,17 +41,19 @@ namespace BestEats.UserInterface
                 case 2:
                     string username = SignInUser(baseRepo);
                     Console.WriteLine("\n{0}  Signed in.", username );
-                    break;
+                    return username;
                 case 9:
                     Console.WriteLine("\nShutting Down");
-                    System.Environment.Exit(1);
-                    break;
+                    System.Environment.Exit(0);
+                    return "";
                 default:
                     Console.WriteLine("Not a valid choice. program ending.");
-                    break;
+                    System.Environment.Exit(1);
+                    return "";
+                    
             }
         }
-        public void StoreMenuInput(BaseRepo baseRepo)
+        public int StoreMenuInput(BaseRepo baseRepo)
         {
 
             Console.WriteLine("insert the number by your choice;   1: Northerville  --  2:Westerville  --  3: Southerville  --  4: Easterville ");
@@ -69,23 +71,24 @@ namespace BestEats.UserInterface
             {
                 case 1:
                     Console.WriteLine("selected Northerville");
-                    OrderingMenu(1);                                          
-                    break;
+                    OrderingMenu(1);
+                    return 1;
                 case 2:
                     Console.WriteLine("selected Westerville");
                     OrderingMenu(2);
-                    break;
+                    return 2;
                 case 3:
                     Console.WriteLine("selected Southerville");
                     OrderingMenu(3);
-                    break;
+                    return 3;
                 case 4:
                     Console.WriteLine("selected Easterville");
                     OrderingMenu(4);
-                    break;
+                    return 4;
                 default:
                     Console.WriteLine("Error with input, shutting off");
-                    break;
+                    System.Environment.Exit(-1);
+                    return 0;
             }
         }
 
@@ -184,6 +187,7 @@ namespace BestEats.UserInterface
         {
             int maxProductTypes = 3;
             int maxProductAmount = 100;
+            Order placedOrder = new Order();
 
             Console.WriteLine("Please select a number for which item you wish to purchase");
             Console.WriteLine(" 1: Apple ($0.80 each) --- 2: Orange ($1.00 each) --- 3: Banana ($0.30 each");
@@ -195,6 +199,8 @@ namespace BestEats.UserInterface
                 productInput = Console.ReadLine();
             }
             int productSelect = int.Parse(productInput);
+
+
 
             Console.WriteLine("Please select a quantity for the item selected.");
             string pQuantityInput = Console.ReadLine();
