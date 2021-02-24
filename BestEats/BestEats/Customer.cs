@@ -6,13 +6,9 @@ using System.Threading.Tasks;
 
 namespace BestEats
 {
-    public class Customer : IHistory, IValidator<Customer>
+    public class Customer : IValidator<Customer>
     {
-        private string _customerFullName;
-        private string _customerPassword;
-        private string _customerHistory;
 
-        // order history list?
 
         public Customer()
         {
@@ -25,11 +21,6 @@ namespace BestEats
         public string CustPassword { get; set; }
 
         public virtual ICollection<Order> Orders { get; set; }
-        public string AccessHistory()
-        {
-            _customerHistory = "5";  // placeholder CHANGE
-            return _customerHistory;
-        }
 
         /// <summary>
         /// checks Customer name for null, digit, length of 50 or bigger

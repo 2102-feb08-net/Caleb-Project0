@@ -13,10 +13,10 @@ namespace BestEats
         public void GenerateNorthStock()
         {
 
-            // List northStock = new List<ItemNameEnum> {};
+            /* List northStock = new List<ItemNameEnum> {};
             string filename_north = "Northerville.txt";
             int lineEntries = 2;
-
+            */
 
             //C: \Users\piran\revature\Caleb - Project0\MunitionsR_Us\MunitionsR_Us\logs\Northerville.txt
             //string path = C:\Users\piran\revature\Caleb - Project0\MunitionsR_Us\MunitionsR_Us\logs\Northerville.txt;

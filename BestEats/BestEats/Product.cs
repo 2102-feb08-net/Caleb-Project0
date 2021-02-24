@@ -6,11 +6,6 @@ namespace BestEats
     public class Product
     {
 
-        // item description?
-        // product history? perhaps last time purchased?
-
-
-
         public Product(int _itemCost, ItemNameEnum _productName)
         {
             

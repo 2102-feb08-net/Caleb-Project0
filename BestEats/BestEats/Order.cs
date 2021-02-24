@@ -6,8 +6,6 @@ namespace BestEats
 	{
 
 		private string _purchasedByCustomerName;
-		//private string _purchasedAtStoreLocation;
-		private string _purchasedAtTime;
 
 		public int OrderId { get; set; }
 		public int CustomerId { get; set; }

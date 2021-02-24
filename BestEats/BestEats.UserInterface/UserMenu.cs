@@ -13,9 +13,9 @@ namespace BestEats.UserInterface
         public void StartMenu()
         {
             Console.WriteLine("Welcome to Best Eats! The tastiest eats you ever ate!");
-            Console.WriteLine("\nIf you are a new customer, Please register by pressing,       1)");
-            Console.WriteLine("If you are an existing customer, Please sign in by entering,  2)");
-            Console.WriteLine("If you wish to exit at any time, please enter,                9)");
+            Console.WriteLine("\nIf you are a new customer, Please register by pressing,         1)");
+            Console.WriteLine("If you are an existing customer, Please sign in by entering,    2)");
+            Console.WriteLine("If you wish to exit at any time, please enter,                  9)");
         }
         public void StoreMenu()
         {
