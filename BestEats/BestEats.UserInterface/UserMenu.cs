@@ -13,9 +13,9 @@ namespace BestEats.UserInterface
         public void StartMenu()
         {
             Console.WriteLine("Welcome to Best Eats! The tastiest eats you ever ate!");
-            Console.WriteLine("If you are a new customer, Please register by pressing,      1");
-            Console.WriteLine("If you are an existing customer, Please sign in by entering, 2");
-            Console.WriteLine("If you wish to exit at any time, please enter,               9");
+            Console.WriteLine("\nIf you are a new customer, Please register by pressing,       1)");
+            Console.WriteLine("If you are an existing customer, Please sign in by entering,  2)");
+            Console.WriteLine("If you wish to exit at any time, please enter,                9)");
         }
         public void StoreMenu()
         {
@@ -108,14 +108,14 @@ namespace BestEats.UserInterface
             int count = 0;
             
             Customer newCustomer = new Customer();
-            Console.WriteLine("Please enter your full name.");
+            Console.WriteLine("\nPlease enter your full name.");
             while ((checkRegistering == false) && (count <= fallBack))
             {
                 newCustomer.FullName = Console.ReadLine();
                 checkRegistering = newCustomer.ValidateName(newCustomer);
                 count++;
             }
-            Console.WriteLine("Please enter a password at least 8 characters long");
+            Console.WriteLine("\nPlease enter a password at least 8 characters long");
             count = 0;
             checkRegistering = false;
             while(( checkRegistering == false) && (count <= fallBack))
@@ -135,12 +135,12 @@ namespace BestEats.UserInterface
         /// <returns> the user's username </returns>
         public string SignInUser(BaseRepo baseRepo)
         {
-            Console.WriteLine("To sign in, Please enter your full name");
+            Console.WriteLine("\nTo sign in, Please enter your full name");
             string customerName = Console.ReadLine();
             
             while(baseRepo.checkCustomerNameExists(customerName) == false)
             {
-                Console.WriteLine("name not found, please enter a valid name or escape with 9");
+                Console.WriteLine("\nname not found, please enter a valid name or escape with 9");
                 customerName = Console.ReadLine();
                 if(customerName.StartsWith("9"))
                 {
@@ -148,7 +148,7 @@ namespace BestEats.UserInterface
                 }
             }
 
-            Console.WriteLine("Please enter your password");
+            Console.WriteLine("\nPlease enter your password");
             string customerPassword = Console.ReadLine();
 
             while (baseRepo.checkCustomerPasswordExists(customerName, customerPassword) == false)
@@ -207,15 +207,21 @@ namespace BestEats.UserInterface
             baseRepo.Save();
 
         }
+        /// <summary>
+        /// displays menu to place new orders or change stores to order from. has method calls for order input
+        /// </summary>
+        /// <param name="baseRepo">DB context query object</param>
+        /// <param name="storeSelection"> store location created originally from StoreMenuInput</param>
+        /// <param name="userName">user's username created originally from SignInUser</param>
         public void OrderingMenu(BaseRepo baseRepo, int storeSelection, string userName)
         {
             
-            Console.WriteLine("Please select an action for your account: ");
+            Console.WriteLine("\nPlease select an action for your account: ");
             //Console.WriteLine("To check your order history, please press,    3");
-            Console.WriteLine("To make a new order,            please press,  4");
+            Console.WriteLine("To make a new order,            please press,  4)");
             //Console.WriteLine("To delete one of your orders    please press,  5");
-            Console.WriteLine("To order from a different store please press,  6");
-            Console.WriteLine("To exit,                        please press,  9");
+            Console.WriteLine("To order from a different store please press,  6)");
+            Console.WriteLine("To exit,                        please press,  9)");
 
             string menuInput = Console.ReadLine();
             while (menuInput.Any(char.IsLetter))

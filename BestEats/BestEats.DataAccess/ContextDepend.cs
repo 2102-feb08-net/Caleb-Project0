@@ -14,7 +14,7 @@ namespace BestEats.DataAccess
 {
     public class ContextDepend : IDisposable
     {
-        //private static DbContextOptions<DB_BestEatsContext> options;
+
         private bool _disposedValue;
         private readonly List<IDisposable> _disposables = new List<IDisposable>();
         public DB_BestEatsContext ConnectDB(string[] args = null)

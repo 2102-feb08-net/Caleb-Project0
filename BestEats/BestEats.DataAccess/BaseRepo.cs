@@ -9,7 +9,7 @@ using BestEats;
 
 namespace BestEats.DataAccess
 {
-    public class BaseRepo //: ICustomerRepo
+    public class BaseRepo : ICustomerRepo
     {
         private readonly DB_BestEatsContext _context;
         
@@ -26,8 +26,11 @@ namespace BestEats.DataAccess
         {
             throw new NotImplementedException();
         }
+        public BestEats.Customer GetCustomerByName(string customerName)
+        {
+            throw new NotImplementedException();
+        }
 
-        
         public BestEats.Customer GetCustomerByID(int customerID)
         {
             Customer customer = _context.Customers.Find(customerID);
@@ -177,5 +180,6 @@ namespace BestEats.DataAccess
         {
             _context.SaveChanges();
         }
+
     }
 }
