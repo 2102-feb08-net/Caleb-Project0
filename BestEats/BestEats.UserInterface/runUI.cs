@@ -3,7 +3,7 @@ using BestEats.DataAccess;
 
 namespace BestEats.UserInterface
 {
-    class runUI
+    class RunUI
     {
         static void Main(string[] args)
         {
@@ -15,8 +15,6 @@ namespace BestEats.UserInterface
             int storeSelection = 0;
             string username;
 
-
-            // pass object through parameters instead
             newMenu.StartMenu();
             username = newMenu.StartMenuInput(baseRepo);
             

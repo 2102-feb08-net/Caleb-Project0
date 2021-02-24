@@ -22,6 +22,11 @@ namespace BestEats.UserInterface
             Console.WriteLine("Please choose the store location you wish to order from:");
         }
 
+        /// <summary>
+        /// runs the RegisterUser, SignInUser methods based on the console print statements from startmenu
+        /// </summary>
+        /// <param name="baseRepo">DB context query object</param>
+        /// <returns> takes username from SignInUser and returns to runUI </returns>
         public string StartMenuInput(BaseRepo baseRepo)
         {
             string menuInput = Console.ReadLine();
@@ -53,6 +58,11 @@ namespace BestEats.UserInterface
                     
             }
         }
+        /// <summary>
+        /// get the store location of choice. Is also called when you want a change of location
+        /// </summary>
+        /// <param name="baseRepo">DB Context query object</param>
+        /// <returns> number of store location choice, which is the same as the storeID</returns>
         public int StoreMenuInput(BaseRepo baseRepo)
         {
 
@@ -69,32 +79,34 @@ namespace BestEats.UserInterface
             switch (int.Parse(menuInput))
             {
                 case 1:
-                    Console.WriteLine("selected Northerville");
+                    Console.WriteLine("\nselected Northerville");
                     return 1;
                 case 2:
-                    Console.WriteLine("selected Westerville");
+                    Console.WriteLine("\nselected Westerville");
                     return 2;
                 case 3:
-                    Console.WriteLine("selected Southerville");
+                    Console.WriteLine("\nselected Southerville");
                     return 3;
                 case 4:
-                    Console.WriteLine("selected Easterville");
+                    Console.WriteLine("\nselected Easterville");
                     return 4;
                 default:
-                    Console.WriteLine("Error with input, shutting off");
+                    Console.WriteLine("\nError with input, shutting off");
                     System.Environment.Exit(-1);
                     return 0;
             }
         }
 
-
+        /// <summary>
+        /// enter a full name/username and a password and save to DB
+        /// </summary>
+        /// <param name="baseRepo">DB context query object</param>
         public void RegisterUser(BaseRepo baseRepo)
         {
             bool checkRegistering = false;
             int fallBack = 5;
             int count = 0;
             
-            // object likely passed in run function rather than made here
             Customer newCustomer = new Customer();
             Console.WriteLine("Please enter your full name.");
             while ((checkRegistering == false) && (count <= fallBack))
@@ -116,6 +128,11 @@ namespace BestEats.UserInterface
             baseRepo.Save();
 
         }
+        /// <summary>
+        /// Check if customer name and password exist and match
+        /// </summary>
+        /// <param name="baseRepo"> db context object</param>
+        /// <returns> the user's username </returns>
         public string SignInUser(BaseRepo baseRepo)
         {
             Console.WriteLine("To sign in, Please enter your full name");
@@ -148,6 +165,12 @@ namespace BestEats.UserInterface
 
         }
 
+        /// <summary>
+        /// does the building of an order through user input and saves to DB
+        /// </summary>
+        /// <param name="baseRepo"> dbcontext point</param>
+        /// <param name="storeLocation"> store location that is originally created from StoreMenuInput switch returns </param>
+        /// <param name="userName"> user's username that is originally created from the SignInUser method </param>
         public void OrderInput(BaseRepo baseRepo, int storeLocation, string userName)
         {
             int maxProductTypes = 3;
@@ -183,9 +206,6 @@ namespace BestEats.UserInterface
             baseRepo.AddOrder(placedOrder);
             baseRepo.Save();
 
-
-
-
         }
         public void OrderingMenu(BaseRepo baseRepo, int storeSelection, string userName)
         {
@@ -193,7 +213,7 @@ namespace BestEats.UserInterface
             Console.WriteLine("Please select an action for your account: ");
             //Console.WriteLine("To check your order history, please press,    3");
             Console.WriteLine("To make a new order,            please press,  4");
-            Console.WriteLine("To delete one of your orders    please press,  5");
+            //Console.WriteLine("To delete one of your orders    please press,  5");
             Console.WriteLine("To order from a different store please press,  6");
             Console.WriteLine("To exit,                        please press,  9");
 
@@ -210,6 +230,13 @@ namespace BestEats.UserInterface
                 case 4:
                     Console.WriteLine("Making new order\n");
                     OrderInput(baseRepo, storeSelection, userName);
+                    OrderingMenu(baseRepo, storeSelection, userName);
+                    break;
+
+                case 6:
+                    storeSelection = StoreMenuInput(baseRepo);
+                    OrderInput(baseRepo, storeSelection, userName);
+                    OrderingMenu(baseRepo, storeSelection, userName);
                     break;
 
                 case 9:
