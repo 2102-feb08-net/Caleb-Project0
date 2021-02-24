@@ -167,6 +167,7 @@ namespace BestEats.UserInterface
             }
             int productSelect = int.Parse(productInput);
             placedOrder.ProductId = productSelect;
+            placedOrder.ItemName = baseRepo.GetItemNameByOProductID(placedOrder.ProductId);
 
 
             Console.WriteLine("Please select a quantity for the item selected.");
@@ -180,10 +181,7 @@ namespace BestEats.UserInterface
             placedOrder.ProductQuantity = pQuantitySelect;
 
             baseRepo.AddOrder(placedOrder);
-
-
-
-
+            baseRepo.Save();
 
 
 

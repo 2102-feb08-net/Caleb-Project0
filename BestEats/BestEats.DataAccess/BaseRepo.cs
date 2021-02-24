@@ -142,6 +142,18 @@ namespace BestEats.DataAccess
             };
         }
 
+        public string GetItemNameByOProductID(int productID)
+        {
+
+            var itemName = _context.Products
+                .Where(n => n.ProductId == productID)
+                .AsEnumerable()
+                .First().ProductName;
+
+
+            return itemName;
+        }
+
         public void AddOrder(BestEats.Order DBorder)
         {
             Order order = new Order
@@ -154,7 +166,7 @@ namespace BestEats.DataAccess
                 ProductQuantity = DBorder.ProductQuantity,
                 OrderPurchaseDate = DBorder.OrderPurchaseDate
                 
-                //CustPassword = DBcustomer.CustomerPassword
+                
             };
 
             _context.Add(order);
