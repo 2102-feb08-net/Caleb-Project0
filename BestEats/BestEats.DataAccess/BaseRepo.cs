@@ -39,15 +39,19 @@ namespace BestEats.DataAccess
                 
             };
         }
-        /*
-        public IQueryable<Customer> GetCustomerByName(string customerName)
+        
+        public int GetCustomerIDByName(string customerName)
         {
-            
-            var results = _context.Customers.Where(n => n.FullName.Contains(customerName));
 
-            return results;
+            var idResult = _context.Customers
+                .Where(n => n.FullName == customerName)
+                .AsEnumerable()
+                .First().CustId;
+
+            
+            return idResult;
         }
-        */
+        
         public bool checkCustomerPasswordExists(string userName, string passwordInput)
         {
             bool exists = false;

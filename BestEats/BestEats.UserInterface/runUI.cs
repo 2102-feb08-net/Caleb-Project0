@@ -7,7 +7,7 @@ namespace BestEats.UserInterface
     {
         static void Main(string[] args)
         {
-            // logger?
+            
             UserMenu newMenu = new UserMenu();
             using var depend = new ContextDepend();
             BaseRepo baseRepo = depend.CreateBaseRepo();
@@ -22,7 +22,8 @@ namespace BestEats.UserInterface
             
             newMenu.StoreMenu();
             storeSelection = newMenu.StoreMenuInput(baseRepo);
-            newMenu.OrderingMenu(storeSelection);
+            
+            newMenu.OrderingMenu(baseRepo, storeSelection, username);
 
            
 

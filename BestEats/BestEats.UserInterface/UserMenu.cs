@@ -66,24 +66,19 @@ namespace BestEats.UserInterface
                 menuInput = Console.ReadLine();
             }
 
-            //if(newStore.StoreLocation.Equals(StoreNameChoice.Northerville)) { Console.WriteLine("selected Northerville"); }
             switch (int.Parse(menuInput))
             {
                 case 1:
                     Console.WriteLine("selected Northerville");
-                    OrderingMenu(1);
                     return 1;
                 case 2:
                     Console.WriteLine("selected Westerville");
-                    OrderingMenu(2);
                     return 2;
                 case 3:
                     Console.WriteLine("selected Southerville");
-                    OrderingMenu(3);
                     return 3;
                 case 4:
                     Console.WriteLine("selected Easterville");
-                    OrderingMenu(4);
                     return 4;
                 default:
                     Console.WriteLine("Error with input, shutting off");
@@ -123,7 +118,6 @@ namespace BestEats.UserInterface
         }
         public string SignInUser(BaseRepo baseRepo)
         {
-            int escape = 0;
             Console.WriteLine("To sign in, Please enter your full name");
             string customerName = Console.ReadLine();
             
@@ -131,7 +125,7 @@ namespace BestEats.UserInterface
             {
                 Console.WriteLine("name not found, please enter a valid name or escape with 9");
                 customerName = Console.ReadLine();
-                if(escape == 9)
+                if(customerName.StartsWith("9"))
                 {
                     System.Environment.Exit(1);
                 }
@@ -144,51 +138,24 @@ namespace BestEats.UserInterface
             {
                 Console.WriteLine("invalid password, please enter a valid name or escape with 9");
                 customerPassword = Console.ReadLine();
-                if (escape == 9)
+                if (customerPassword.StartsWith("9"))
                 {
                     System.Environment.Exit(1);
                 }
             }
-
             return customerName;
 
-
-            //IQueryable<BestEats.DataAccess.Customer> currentUser = baseRepo.GetCustomerByName(customerName);
-
-            /*
-
-            while (currentUser.Equals(false))
-            {
-                Console.WriteLine("name not found, re-enter a registered name, or press 9 to exit");
-                customerName = Console.ReadLine();
-                currentUser = baseRepo.GetCustomerByName(customerName);
-
-            }
-
-            Console.WriteLine("Please enter your password");
-            string customerPassword = Console.ReadLine();
-            currentUser = baseRepo.GetCustomerByPassword(customerPassword);
-
-            while (currentUser == null)
-            {
-
-                Console.WriteLine("name not found, re-enter a registered name, or press 9 to exit");
-                customerPassword = Console.ReadLine();
-                currentUser = baseRepo.GetCustomerByPassword(customerPassword);
-
-            }
-            return customerName;
-
-            */
 
         }
 
-        public void PlaceAnOrder(int storeLocation)
+        public void OrderInput(BaseRepo baseRepo, int storeLocation, string userName)
         {
             int maxProductTypes = 3;
             int maxProductAmount = 100;
             Order placedOrder = new Order();
 
+            placedOrder.CustomerId = baseRepo.GetCustomerIDByName(userName);
+            placedOrder.StoreId = storeLocation;
             Console.WriteLine("Please select a number for which item you wish to purchase");
             Console.WriteLine(" 1: Apple ($0.80 each) --- 2: Orange ($1.00 each) --- 3: Banana ($0.30 each");
             
@@ -199,7 +166,7 @@ namespace BestEats.UserInterface
                 productInput = Console.ReadLine();
             }
             int productSelect = int.Parse(productInput);
-
+            placedOrder.ProductId = productSelect;
 
 
             Console.WriteLine("Please select a quantity for the item selected.");
@@ -210,6 +177,11 @@ namespace BestEats.UserInterface
                 pQuantityInput = Console.ReadLine();
             }
             int pQuantitySelect = int.Parse(pQuantityInput);
+            placedOrder.ProductQuantity = pQuantitySelect;
+
+            baseRepo.AddOrder(placedOrder);
+
+
 
 
 
@@ -217,7 +189,7 @@ namespace BestEats.UserInterface
 
 
         }
-        public void OrderingMenu(int storeSelection)
+        public void OrderingMenu(BaseRepo baseRepo, int storeSelection, string userName)
         {
             
             Console.WriteLine("Please select an action for your account: ");
@@ -239,6 +211,7 @@ namespace BestEats.UserInterface
             {
                 case 4:
                     Console.WriteLine("Making new order\n");
+                    OrderInput(baseRepo, storeSelection, userName);
                     break;
 
                 case 9:
