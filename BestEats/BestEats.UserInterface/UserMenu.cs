@@ -22,15 +22,15 @@ namespace BestEats.UserInterface
             Console.WriteLine("Please choose the store location you wish to order from:");
         }
 
-
         public void StartMenuInput(BaseRepo baseRepo)
         {
             string menuInput = Console.ReadLine();
             while(menuInput.Any(char.IsLetter))
             {
-                Console.WriteLine("insert a valid number choice");
+                Console.WriteLine("Please insert a valid number choice");
                 menuInput = Console.ReadLine();
             }
+
             switch(int.Parse(menuInput))
             {
                 case 1:
@@ -46,39 +46,21 @@ namespace BestEats.UserInterface
                     Console.WriteLine("\nShutting Down");
                     System.Environment.Exit(1);
                     break;
-
                 default:
-                    
                     Console.WriteLine("Not a valid choice. program ending.");
                     break;
             }
         }
         public void StoreMenuInput(BaseRepo baseRepo)
         {
-            bool checkRegistering = false;
-            int fallBack = 5;
-            int count = 0;
-
-            // object likely passed in run function rather than made here
-            Store newStore = new Store();
 
             Console.WriteLine("insert the number by your choice;   1: Northerville  --  2:Westerville  --  3: Southerville  --  4: Easterville ");
             string menuInput = Console.ReadLine();
 
-            /*
-            while ((checkRegistering == false) && (count <= fallBack))
-            {
-                // this should test a number of choice not an enum. dummy :(
-
-                //newStore.StoreName = (StoreNameChoice) Enum.Parse(typeof(StoreNameChoice), newStore.StoreName, true);
-                checkRegistering = newStore.ValidateName(newStore);
-                count++;
-            }
-            */
 
             while (menuInput.Any(char.IsLetter))
             {
-                Console.WriteLine("insert a valid number choice");
+                Console.WriteLine("Please insert a valid number choice");
                 menuInput = Console.ReadLine();
             }
 
@@ -198,17 +180,73 @@ namespace BestEats.UserInterface
 
         }
 
+        public void PlaceAnOrder(int storeLocation)
+        {
+            int maxProductTypes = 3;
+            int maxProductAmount = 100;
+
+            Console.WriteLine("Please select a number for which item you wish to purchase");
+            Console.WriteLine(" 1: Apple ($0.80 each) --- 2: Orange ($1.00 each) --- 3: Banana ($0.30 each");
+            
+            string productInput = Console.ReadLine();
+            while (productInput.Any(char.IsLetter) || int.Parse(productInput) < 0 || int.Parse(productInput) > maxProductTypes)
+            {
+                Console.WriteLine("\nPlease insert a valid number choice");
+                productInput = Console.ReadLine();
+            }
+            int productSelect = int.Parse(productInput);
+
+            Console.WriteLine("Please select a quantity for the item selected.");
+            string pQuantityInput = Console.ReadLine();
+            while (pQuantityInput.Any(char.IsLetter) || int.Parse(pQuantityInput) < 0 || int.Parse(pQuantityInput) > maxProductAmount)
+            {
+                Console.WriteLine("\nPlease insert a valid number choice");
+                pQuantityInput = Console.ReadLine();
+            }
+            int pQuantitySelect = int.Parse(pQuantityInput);
+
+
+
+
+
+
+        }
         public void OrderingMenu(int storeSelection)
         {
+            
             Console.WriteLine("Please select an action for your account: ");
             //Console.WriteLine("To check your order history, please press,    3");
-            Console.WriteLine("To make a new order, please press,    4");
-            Console.WriteLine("To delete one of your orders please press,    5");
-            Console.WriteLine("To exit,                     please press,    9");
+            Console.WriteLine("To make a new order,            please press,  4");
+            Console.WriteLine("To delete one of your orders    please press,  5");
+            Console.WriteLine("To order from a different store please press,  6");
+            Console.WriteLine("To exit,                        please press,  9");
+
+            string menuInput = Console.ReadLine();
+            while (menuInput.Any(char.IsLetter))
+            {
+                Console.WriteLine("\n Please insert a valid number choice");
+                menuInput = Console.ReadLine();
+            }
+            int menuSelect = int.Parse(menuInput);
+
+            switch (int.Parse(menuInput))
+            {
+                case 4:
+                    Console.WriteLine("Making new order\n");
+                    break;
+
+                case 9:
+                    Console.WriteLine("\nExiting Program.");
+                    System.Environment.Exit(0);
+                    break;
+
+                default:
+                    Console.WriteLine("error with menu selection, exiting");
+                    break;
+            }
+
+
         }
-
-            
-
 
 
     }

@@ -157,8 +157,6 @@ namespace BestEats.DataAccess
         }
 
 
-
-
         public void Save()
         {
             _context.SaveChanges();

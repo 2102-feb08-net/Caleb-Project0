@@ -67,8 +67,9 @@ INSERT INTO BE.Store(storeID, storeLocation) VALUES
 
 
 INSERT INTO BE.Product(productID, productName, price) VALUES
-	(1, 'Apple', 1.00),
-	(2, 'Orange', 1.50)
+	(1, 'Apple', 0.80),
+	(2, 'Orange', 1.00),
+	(3, 'Banana', 0.30)
 
 /*
 -- skipping productname
