@@ -10,6 +10,7 @@ namespace BestEats.DataAccess
         public Customer()
         {
             Orders = new HashSet<Order>();
+            Packages = new HashSet<Package>();
         }
 
         public int CustId { get; set; }
@@ -17,5 +18,6 @@ namespace BestEats.DataAccess
         public string CustPassword { get; set; }
 
         public virtual ICollection<Order> Orders { get; set; }
+        public virtual ICollection<Package> Packages { get; set; }
     }
 }

@@ -18,7 +18,9 @@ namespace BestEats.DataAccess
         }
 
         public virtual DbSet<Customer> Customers { get; set; }
+        public virtual DbSet<Inventory> Inventories { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
+        public virtual DbSet<Package> Packages { get; set; }
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<Store> Stores { get; set; }
 
@@ -29,9 +31,12 @@ namespace BestEats.DataAccess
             modelBuilder.Entity<Customer>(entity =>
             {
                 entity.HasKey(e => e.CustId)
-                    .HasName("PK__Customer__9725F2E6805A28CD");
+                    .HasName("PK__Customer__9725F2E6F9041995");
 
                 entity.ToTable("Customer", "BE");
+
+                entity.HasIndex(e => e.FullName, "UQ__Customer__C8B4CE9F43E6AC4C")
+                    .IsUnique();
 
                 entity.Property(e => e.CustId).HasColumnName("custID");
 
@@ -46,6 +51,30 @@ namespace BestEats.DataAccess
                     .HasMaxLength(150)
                     .HasColumnName("fullName")
                     .HasDefaultValueSql("('insertname')");
+            });
+
+            modelBuilder.Entity<Inventory>(entity =>
+            {
+                entity.HasKey(e => new { e.StoreId, e.ProductId })
+                    .HasName("ck_inventory");
+
+                entity.ToTable("Inventory", "BE");
+
+                entity.Property(e => e.StoreId).HasColumnName("storeId");
+
+                entity.Property(e => e.ProductId).HasColumnName("productId");
+
+                entity.Property(e => e.Amount).HasColumnName("amount");
+
+                entity.HasOne(d => d.Product)
+                    .WithMany(p => p.Inventories)
+                    .HasForeignKey(d => d.ProductId)
+                    .HasConstraintName("fk_Inv_product");
+
+                entity.HasOne(d => d.Store)
+                    .WithMany(p => p.Inventories)
+                    .HasForeignKey(d => d.StoreId)
+                    .HasConstraintName("fk_Inv_store");
             });
 
             modelBuilder.Entity<Order>(entity =>
@@ -75,24 +104,60 @@ namespace BestEats.DataAccess
                 entity.HasOne(d => d.Customer)
                     .WithMany(p => p.Orders)
                     .HasForeignKey(d => d.CustomerId)
-                    .HasConstraintName("FK__Orders__customer__1A9EF37A");
+                    .HasConstraintName("FK__Orders__customer__52CE3E04");
 
                 entity.HasOne(d => d.Product)
                     .WithMany(p => p.Orders)
                     .HasForeignKey(d => d.ProductId)
-                    .HasConstraintName("FK__Orders__productI__1C873BEC");
+                    .HasConstraintName("FK__Orders__productI__54B68676");
 
                 entity.HasOne(d => d.Store)
                     .WithMany(p => p.Orders)
                     .HasForeignKey(d => d.StoreId)
-                    .HasConstraintName("FK__Orders__storeId__1B9317B3");
+                    .HasConstraintName("FK__Orders__storeId__53C2623D");
+            });
+
+            modelBuilder.Entity<Package>(entity =>
+            {
+                entity.ToTable("Packages", "BE");
+
+                entity.Property(e => e.PackageId).HasColumnName("packageID");
+
+                entity.Property(e => e.CustomerId).HasColumnName("customerId");
+
+                entity.Property(e => e.ProductId).HasColumnName("productId");
+
+                entity.Property(e => e.StoreId).HasColumnName("storeId");
+
+                entity.HasOne(d => d.Customer)
+                    .WithMany(p => p.Packages)
+                    .HasForeignKey(d => d.CustomerId)
+                    .HasConstraintName("fk_pack_customer");
+
+                entity.HasOne(d => d.Order)
+                    .WithMany(p => p.Packages)
+                    .HasForeignKey(d => d.OrderId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("fk_pack_orders");
+
+                entity.HasOne(d => d.Product)
+                    .WithMany(p => p.Packages)
+                    .HasForeignKey(d => d.ProductId)
+                    .HasConstraintName("fk_pack_product");
+
+                entity.HasOne(d => d.Store)
+                    .WithMany(p => p.Packages)
+                    .HasForeignKey(d => d.StoreId)
+                    .HasConstraintName("fk_pack_store");
             });
 
             modelBuilder.Entity<Product>(entity =>
             {
                 entity.ToTable("Product", "BE");
 
-                entity.Property(e => e.ProductId).HasColumnName("productID");
+                entity.Property(e => e.ProductId)
+                    .ValueGeneratedNever()
+                    .HasColumnName("productID");
 
                 entity.Property(e => e.Price)
                     .HasColumnType("money")
@@ -110,7 +175,9 @@ namespace BestEats.DataAccess
             {
                 entity.ToTable("Store", "BE");
 
-                entity.Property(e => e.StoreId).HasColumnName("storeID");
+                entity.Property(e => e.StoreId)
+                    .ValueGeneratedNever()
+                    .HasColumnName("storeID");
 
                 entity.Property(e => e.StoreLocation)
                     .IsRequired()
