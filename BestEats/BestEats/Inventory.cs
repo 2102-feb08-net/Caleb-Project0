@@ -6,19 +6,21 @@ using System.Threading.Tasks;
 
 namespace BestEats
 {
-    class Inventory
+    public class Inventory
     {
+        public Inventory(int storeId, int productId, int amount)
+        {
+            StoreId = storeId;
+            ProductId = productId;
+            Amount = amount;
+        }
 
-            public int PackageId { get; set; }
-            public int CustomerId { get; set; }
-            public int StoreId { get; set; }
-            public int ProductId { get; set; }
-            public int OrderId { get; set; }
+        public int StoreId { get; set; }
+        public int ProductId { get; set; }
+        public int Amount { get; set; }
 
-            public virtual Customer Customer { get; set; }
-            public virtual Order Order { get; set; }
-            public virtual Product Product { get; set; }
-            public virtual Store Store { get; set; }
-        
+        public Product Product { get; set; }
+        public Store Store { get; set; }
+
     }
 }

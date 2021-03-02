@@ -180,7 +180,7 @@ namespace BestEats.UserInterface
             placedOrder.CustomerId = baseRepo.GetCustomerIDByName(userName);
             placedOrder.StoreId = storeLocation;
             Console.WriteLine("Please select a number for which item you wish to purchase");
-            Console.WriteLine(" 1: Apple ($0.80 each) --- 2: Orange ($1.00 each) --- 3: Banana ($0.30 each");
+            Console.WriteLine(" 1: Apple ($0.80 each)\n2: Orange ($1.00 each)\n3: Banana ($0.30 each");
             
             string productInput = Console.ReadLine();
             while (productInput.Any(char.IsLetter) || int.Parse(productInput) < 0 || int.Parse(productInput) > maxProductTypes)
@@ -190,7 +190,7 @@ namespace BestEats.UserInterface
             }
             int productSelect = int.Parse(productInput);
             placedOrder.ProductId = productSelect;
-            placedOrder.ItemName = baseRepo.GetItemNameByOProductID(placedOrder.ProductId);
+            placedOrder.ItemName = baseRepo.GetItemNameByProductID(placedOrder.ProductId);
 
 
             Console.WriteLine("Please select a quantity for the item selected.");
@@ -217,11 +217,11 @@ namespace BestEats.UserInterface
         {
             
             Console.WriteLine("\nPlease select an action for your account: ");
-            //Console.WriteLine("To check your order history, please press,    3");
-            Console.WriteLine("To make a new order,            please press,  4)");
-            //Console.WriteLine("To delete one of your orders    please press,  5");
-            Console.WriteLine("To order from a different store please press,  6)");
-            Console.WriteLine("To exit,                        please press,  9)");
+            Console.WriteLine("To check your package of items,              press,  3)");
+            Console.WriteLine("To add an item to your package,              press,  4)");
+            Console.WriteLine("To check available inventory from store,     press,  5)");
+            Console.WriteLine("To order from a different store,             press,  6)");
+            Console.WriteLine("To exit,                                     press,  9)");
 
             string menuInput = Console.ReadLine();
             while (menuInput.Any(char.IsLetter))
@@ -238,6 +238,28 @@ namespace BestEats.UserInterface
                     OrderInput(baseRepo, storeSelection, userName);
                     OrderingMenu(baseRepo, storeSelection, userName);
                     break;
+
+                case 5:
+                    var storeInventory = baseRepo.GetInventory();
+                    Console.WriteLine("Store Inventories:\n");
+
+                    Console.WriteLine($"Store Name: {baseRepo.GetStoreByID(storeSelection).StoreLocation}");
+
+                    for (int a = 0; a < baseRepo.getNumberOfProductTypes(); a++)
+                    {
+                        Console.WriteLine($"Item: {baseRepo.GetItemNameByProductID(storeInventory[a].ProductId)}" +
+                                $"  {storeInventory[a].Amount}");
+                    }
+                    //storeInventory[storeSelection]
+                    /*
+                        Console.WriteLine($"Store Name: {baseRepo.GetStoreByID(storeinv.StoreId)}");
+                        Console.WriteLine($"Item: {baseRepo.GetItemNameByProductID(storeinv.ProductId)}" +
+                            $"  {storeInventory.Amount}");
+                    */
+
+
+                    break;
+                    
 
                 case 6:
                     storeSelection = StoreMenuInput(baseRepo);

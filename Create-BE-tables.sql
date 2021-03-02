@@ -207,5 +207,7 @@ SELECT * FROM BE.Customer
 SELECT * FROM BE.Store
 SELECT * FROM BE.Product
 SELECT * FROM BE.Orders
+SELECT * FROM BE.Packages
+SELECT * FROM BE.Inventory
 
 */

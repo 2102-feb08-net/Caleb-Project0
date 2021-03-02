@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BestEats
 {
-    class Package
+    public class Package
     {
         public int PackageId { get; set; }
         public int CustomerId { get; set; }
@@ -14,10 +14,10 @@ namespace BestEats
         public int ProductId { get; set; }
         public int OrderId { get; set; }
 
-        public virtual Customer Customer { get; set; }
-        public virtual Order Order { get; set; }
-        public virtual Product Product { get; set; }
-        public virtual Store Store { get; set; }
+        public Customer Customer { get; set; }
+        public Order Order { get; set; }
+        public Product Product { get; set; }
+        public Store Store { get; set; }
 
 
     }

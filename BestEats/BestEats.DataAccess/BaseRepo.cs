@@ -129,6 +129,31 @@ namespace BestEats.DataAccess
             };
         }
 
+        public string GetItemNameByProductID(int productID)
+        {
+
+            var itemName = _context.Products
+                .Where(n => n.ProductId == productID)
+                .AsEnumerable()
+                .First().ProductName;
+
+
+            return itemName;
+        }
+        public int getNumberOfProductTypes()
+        {
+            var results = _context.Products;
+            int productCount = 0;
+            //List<BestEats.Product> inventories = new List<BestEats.Product>();
+
+            foreach (var result in results)
+            {
+                productCount += 1;
+            }
+            return productCount;
+        }
+
+
         // ORDER REPO SECTION **********
 
         public Order GetOrderByID(int orderID)
@@ -145,17 +170,6 @@ namespace BestEats.DataAccess
             };
         }
 
-        public string GetItemNameByOProductID(int productID)
-        {
-
-            var itemName = _context.Products
-                .Where(n => n.ProductId == productID)
-                .AsEnumerable()
-                .First().ProductName;
-
-
-            return itemName;
-        }
 
         public void AddOrder(BestEats.Order DBorder)
         {
@@ -175,6 +189,23 @@ namespace BestEats.DataAccess
             _context.Add(order);
         }
 
+        // PACKAGE REPO SECTION
+
+        public List<BestEats.Inventory> GetInventory()
+        {
+            var results = _context.Inventories;
+            List<BestEats.Inventory> inventories = new List<BestEats.Inventory>();
+
+            foreach (var result in results)
+            {
+                inventories.Add(new BestEats.Inventory(result.StoreId, result.ProductId, result.Amount));
+            }
+            return inventories;
+        }
+
+
+
+        // INVENTORY REPO SECTION
 
         public void Save()
         {
